@@ -1,0 +1,9 @@
+software:
+  - mosh
+  - fail2ban
+  - ufw
+  - git
+
+ssh_user:
+ssh_public_key_user:
+ssh_ansible_public_key:

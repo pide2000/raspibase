@@ -1,3 +1,3 @@
 # raspiBase
 
-Base configuration for raspberry pi projects
+Base configuration for raspberry pi projects.

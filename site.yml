@@ -1,0 +1,11 @@
+- hosts: raspi
+  user: ansible
+  become: true
+  become_method: sudo
+  roles:
+    - {role: 'initial', tags: 'initial'}
+  vars:
+    dist_upgrade: true
+    update_apt_cache: yes
+    wireguard: no
+    monitoring: yes

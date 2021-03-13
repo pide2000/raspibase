@@ -1,0 +1,12 @@
+- name: Import tasks for software installation
+  import_tasks: software.yml
+
+- name: Import tasks for user and group creation
+  import_tasks: users.yml
+
+- name: Import tasks for security stuff
+  include_tasks: "{{item}}"
+  with_items:
+    - security/user_settings.yml
+    - security/ssh.yml
+    - security/ufw.yml

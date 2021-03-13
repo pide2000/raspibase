@@ -1,0 +1,8 @@
+- name: Place adjusted sshd_config, disable root login and comment out root without-password
+  copy:
+    src: files/sshd_config
+    dest: /etc/ssh/sshd_config
+    backup: yes
+  notify: restart ssh
+
+# todo: use regex to set variables

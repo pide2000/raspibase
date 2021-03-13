@@ -1,0 +1,31 @@
+- group:
+    name: admin
+    state: present
+
+- name: Add user
+  user: 
+    name: "{ ssh_user }"
+    comment: "{ ssh_user } - Administrator"
+    shell: /bin/bash
+    group: admin
+
+- name: Add ssh public key for user
+  authorized_key: 
+    user: "{ ssh_user }"
+    key: "{ ssh_public_key_user }"
+    state: present
+    exclusive: False
+
+- name: Add user ansible
+  user: 
+    name: ansible
+    comment: "Ansible User"
+    shell: /bin/bash
+    group: admin
+
+- name: Add ssh public key for user ansible 
+  authorized_key: 
+    user: ansible
+    key: "{ ssh_ansible_public_key }"
+    state: present
+    exclusive: False
