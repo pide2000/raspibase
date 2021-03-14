@@ -2,6 +2,11 @@
 
 Base configuration for raspberry pi projects.
 
+#### Quick Start
+* Configure the values needed
+* Run ansible playbook with 
+```ansible-playbook -i inventories/hosts site.yml -l pi```
+
 ## Initial Role 
 Here we sum up every task which is essential in our opinion 
 
