@@ -1,12 +1,8 @@
 - name: Configure firewall rules
   ufw:
     rule: allow
-    name: "{{allowed_service}}"
-  with_items:
-    - OpenSSH
-    - mosh
-  loop_control:
-    loop_var: allowed_service
+    name: "{{ item }}"
+  with_items: "{{ allowed_services }}"
 
 - name: Enable UFW with default policy
   ufw:
