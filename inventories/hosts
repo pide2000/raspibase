@@ -1,2 +1,5 @@
-[pi]
+[raspi]
 192.168.0.4
+
+[all:vars]
+ansible_ssh_pass=raspberry

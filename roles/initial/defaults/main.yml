@@ -4,6 +4,12 @@ software:
   - ufw
   - git
 
-ssh_user:
-ssh_public_key_user:
-ssh_ansible_public_key:
+upgrade: yes
+
+ansible_user_name: ansible_ssh
+ansible_user: "{{ ansible_user_name }}"
+ssh_user: pide
+user_ssh_public_key: "{{ lookup('file', '~/.ssh/id_rsa_private.pub') }}"
+ansible_ssh_public_key: "{{ lookup('file', '~/.ssh/id_rsa_ansible.pub') }}"
+password_access: no
+root_access: no

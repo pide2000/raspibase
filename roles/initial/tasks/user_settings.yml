@@ -1,6 +1,0 @@
-- name: Allow admin group to have passwordless sudo
-  lineinfile:
-    dest: /etc/sudoers
-    state: present
-    regexp: '^%admin'
-    line: '%admin ALL=(ALL) NOPASSWD: ALL'

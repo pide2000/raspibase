@@ -1,7 +1,7 @@
 - hosts: raspi
-  user: ansible
   become: true
   become_method: sudo
+  gather_facts: no
   roles:
     - {role: 'initial', tags: 'initial'}
   vars:

@@ -1,31 +1,40 @@
+---
 - group:
     name: admin
     state: present
 
+- name: Allow admin group to have passwordless sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%admin'
+    line: '%admin ALL=(ALL) NOPASSWD: ALL'
+
 - name: Add user
   user: 
-    name: "{ ssh_user }"
-    comment: "{ ssh_user } - Administrator"
+    name: "{{ ssh_user }}"
+    comment: "{{ ssh_user }} - Administrator"
     shell: /bin/bash
     group: admin
 
 - name: Add ssh public key for user
   authorized_key: 
-    user: "{ ssh_user }"
-    key: "{ ssh_public_key_user }"
+    user: "{{ ssh_user }}"
+    key: "{{ user_ssh_public_key }}"
     state: present
     exclusive: False
 
 - name: Add user ansible
   user: 
-    name: ansible
+    name: "{{ ansible_user_name }}"
     comment: "Ansible User"
     shell: /bin/bash
     group: admin
 
 - name: Add ssh public key for user ansible 
   authorized_key: 
-    user: ansible
-    key: "{ ssh_ansible_public_key }"
+    user: "{{ ansible_user_name }}"
+    key: "{{ ansible_ssh_public_key }}"
     state: present
     exclusive: False
+    key_options: 'no-port-forwarding'

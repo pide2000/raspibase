@@ -1,12 +1,23 @@
-- name: Import tasks for software installation
-  import_tasks: software.yml
+- name: Check if connection is possible with ansible user
+  command: ssh -o User={{ ansible_user }} -o ConnectTimeout=10 -o PreferredAuthentications=publickey -o PubkeyAuthentication=yes {{ inventory_hostname }} echo "True"
+  register: result
+  connection: local
+  ignore_errors: yes
+  become: false
+  changed_when: True
+
+- name: If no connection, change user_name
+  connection: local
+  set_fact:
+    ansible_user: pi
+  when: result is failed
 
 - name: Import tasks for user and group creation
   import_tasks: users.yml
 
-- name: Import tasks for security stuff
-  include_tasks: "{{item}}"
-  with_items:
-    - security/user_settings.yml
-    - security/ssh.yml
-    - security/ufw.yml
+- name: Remove pi default user
+  user:
+    name: pi
+    state: absent
+    remove: yes
+    force: yes
