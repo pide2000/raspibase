@@ -1,8 +1,13 @@
---
+---
+- name: Upgrade
+  apt:
+    upgrade: dist
+    update_cache: "{{ update_apt_cache }}"
+  when: upgrade
 
 - name: Update repositories cache and install common server software
   apt:
-    name: "{{ item }}"
+    name: "{{ software }}"
     state: present
-    update_cache: "{{update_apt_cache}}"
-  with_items: "{{ software }}"
+    update_cache: "{{ update_apt_cache }}"
+

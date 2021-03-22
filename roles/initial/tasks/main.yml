@@ -18,6 +18,9 @@
 - name: Import tasks for ssh config
   import_tasks: ssh.yml
 
+- name: Import tasks for basic software installation
+  import_tasks: software.yml
+
 - name: Remove pi default user
   user:
     name: pi

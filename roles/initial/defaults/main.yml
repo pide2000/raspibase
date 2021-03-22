@@ -16,3 +16,9 @@ login_grace_time: "1m"
 password_authentication: "no"
 x11_forwarding: "no"
 port: "22"
+
+software:
+  - mosh
+  - fail2ban
+  - ufw
+  - git
