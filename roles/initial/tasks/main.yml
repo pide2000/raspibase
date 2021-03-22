@@ -15,6 +15,9 @@
 - name: Import tasks for user and group creation
   import_tasks: users.yml
 
+- name: Import tasks for ssh config
+  import_tasks: ssh.yml
+
 - name: Remove pi default user
   user:
     name: pi

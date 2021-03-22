@@ -7,3 +7,12 @@ user_ssh_public_key: "{{ lookup('file', '~/.ssh/id_rsa_private.pub') }}"
 ansible_ssh_public_key: "{{ lookup('file', '~/.ssh/id_rsa_ansible.pub') }}"
 password_access: no
 root_access: no
+
+
+#sshd_config.j2 Variables
+permit_empty_passwords: "no"
+max_auth_tries: "3"
+login_grace_time: "1m"
+password_authentication: "no"
+x11_forwarding: "no"
+port: "22"

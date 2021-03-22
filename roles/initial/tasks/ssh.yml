@@ -1,8 +1,6 @@
-- name: Place adjusted sshd_config, disable root login and comment out root without-password
-  copy:
-    src: files/sshd_config
+- name: Place adjusted sshd_config.j2
+  template:
+    src: files/sshd_config.j2
     dest: /etc/ssh/sshd_config
     backup: yes
   notify: restart ssh
-
-# todo: use regex to set variables

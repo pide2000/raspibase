@@ -2,4 +2,4 @@
   service:
     name: ssh
     state: restarted
-  #when: changed-sshd_config
+  #when: changed-sshd_config.j2
