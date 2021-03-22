@@ -1,14 +1,8 @@
-software:
-  - mosh
-  - fail2ban
-  - ufw
-  - git
-
 upgrade: yes
 
 ansible_user_name: ansible_ssh
 ansible_user: "{{ ansible_user_name }}"
-ssh_user: pide
+ssh_user: my_ssh_user
 user_ssh_public_key: "{{ lookup('file', '~/.ssh/id_rsa_private.pub') }}"
 ansible_ssh_public_key: "{{ lookup('file', '~/.ssh/id_rsa_ansible.pub') }}"
 password_access: no
