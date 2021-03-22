@@ -21,6 +21,9 @@
 - name: Import tasks for basic software installation
   import_tasks: software.yml
 
+- name: Import task for journald configuration
+  import_tasks: journald.yml
+
 - name: Remove pi default user
   user:
     name: pi

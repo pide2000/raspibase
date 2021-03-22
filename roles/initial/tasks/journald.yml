@@ -1,0 +1,14 @@
+- name: create folder for jounrald config
+  file:
+    path: /etc/systemd/journald.conf.d
+    state: directory
+
+- name: configure filesizes of journald
+  copy:
+    src: files/journalsize.conf
+    dest: /etc/systemd/journald.conf.d/journalsize.conf
+
+- name: reload configuration of journald to reload journalsize configuration
+  service:
+    name: systemd-journald.service
+    state: restarted
