@@ -22,3 +22,8 @@ software:
   - fail2ban
   - ufw
   - git
+  - vim
+
+allowed_services:
+  - ssh
+  - mosh
