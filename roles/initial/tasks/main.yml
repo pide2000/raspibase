@@ -29,6 +29,9 @@
 - name: Import task for journald configuration
   import_tasks: journald.yml
 
+- name: Import task for ufw configuration
+  import_tasks: ufw.yml
+
 - name: Remove pi default user
   user:
     name: pi

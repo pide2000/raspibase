@@ -1,10 +1,20 @@
+- name: Correct iptables version selected
+  alternatives:
+    name: iptables
+    path:  /usr/sbin/iptables-nft
+  register: task_result
+
 - name: Configure firewall rules
   ufw:
     rule: allow
-    name: "{{ item }}"
+    name: "{{ allowed_service }}"
   with_items: "{{ allowed_services }}"
+  loop_control:
+    loop_var: allowed_service
 
 - name: Enable UFW with default policy
   ufw:
     state: enabled
+    direction: in
+    rule: deny
     logging: low
