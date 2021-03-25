@@ -1,0 +1,10 @@
+[Interface]
+Address = {{ private_ip }}
+PrivateKey = {{ wg_private_key }}
+DNS = 8.8.8.8
+MTU = {{ mtu }]
+[Peer]
+PublicKey = {{ server_public_key }}
+Endpoint = {{ server_ip }}:{{ port }}
+AllowedIPs = {{ allowed_ips }}
+PersistentKeepalive = {{ persistent_keepalive }}

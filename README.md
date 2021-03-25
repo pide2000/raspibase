@@ -13,7 +13,10 @@ Here we sum up every task which is essential in our opinion
 ### User Mgmt
 
 * remove pi user
-* add ansible user if necessary
+#### add ansible user
+
+We add an ansible user because if some
+
 * add ssh user and public key
 
 ### security

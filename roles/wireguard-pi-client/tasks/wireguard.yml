@@ -1,0 +1,53 @@
+- include: install_wireguard.yml
+
+- name: "Check if wireguard configuration with Name {{ wireguard_conf_path }}{{ wireguard_credentials_file }} is present"
+  stat:
+    path: "{{ wireguard_conf_path }}{{ wireguard_credentials_file }}"
+  register: wgconf
+
+
+- name: Generate new keys and save them on the server side
+  block:
+
+    - name: Create wireguard directory
+      file:
+        path: "{{ wireguard_conf_path }}"
+        state: directory
+
+    - name: Generate private key
+      shell: wg genkey
+      register: wireguard_genkey
+
+    - set_fact:
+        wg_private_key: "{{ wireguard_genkey.stdout }}"
+
+    - name: Generate public key
+      shell: "echo {{ wg_private_key }} | wg pubkey"
+      register: wireguard_pubkey
+
+    - set_fact:
+        wg_public_key: "{{ wireguard_pubkey.stdout }}"
+
+    - name: Configuring wireguard
+      template:
+        src: files/wg.conf.j2
+        dest: "{{ wireguard_conf_path }}{{ wireguard_conf_file }}"
+        owner: root
+        group: root
+        mode: 0600
+
+    - name: Placing file with all the credentials on the scimageframe
+      template:
+        src: files/wg.credentials.j2
+        dest: "{{ wireguard_conf_path }}{{ wireguard_credentials_file }}"
+        owner: root
+        group: root
+        mode: 0600
+
+  when: wgconf.stat.exists == False
+
+- name: Starting wireguard
+  systemd:
+    name: "wg-quick@wg"
+    enabled: yes
+    state: started

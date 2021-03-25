@@ -1,0 +1,7 @@
+---
+
+- name: Import task to install wireguard
+  import_tasks: install_wireguard.yml
+
+- name: Import task to configure wiregiard
+  import_tasks: wireguard.yml

@@ -1,0 +1,38 @@
+---
+
+- name: Check if wireguard is installed
+  package_facts:
+    manager: "auto"
+
+- name: Install wireguard
+  block:
+    - name: Install raspberry pi kernel headers
+      apt:
+        name: ["raspberrypi-kernel-headers"]
+        state: present
+
+    - name: Add raspbian testing
+      shell: "echo 'deb http://archive.raspbian.org/raspbian testing main' | sudo tee --append /etc/apt/sources.list.d/testing.list"
+
+    - name: Set priority of testing low so not every package will be updated to testing
+      shell: "printf 'Package: *\nPin: release a=testing\nPin-Priority: 50\n' | sudo tee --append /etc/apt/preferences.d/limit-testing"
+
+    - name: Update repositories cache and install wireguard
+      apt:
+        name: ["wireguard"]
+        state: present
+        update_cache: yes
+
+    - name: Reboot immediately if there was a change.
+      shell: "sleep 5 && reboot"
+      async: 1
+      poll: 0
+
+    - name: Wait for the reboot to complete if there was a change.
+      wait_for_connection:
+        connect_timeout: 20
+        sleep: 5
+        delay: 5
+        timeout: 300
+
+  when: "'wireguard' not in ansible_facts.packages"
