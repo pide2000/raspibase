@@ -15,6 +15,11 @@
 - name: Import tasks for user and group creation
   import_tasks: users.yml
 
+- name: Change to ansible ssh standard user
+  connection: local
+  set_fact:
+    ansible_user: "{{ ansible_user_name }}"
+
 - name: Import tasks for ssh config
   import_tasks: ssh.yml
 
