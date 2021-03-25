@@ -4,6 +4,7 @@
   gather_facts: no
   roles:
     - {role: 'initial', tags: 'initial'}
+    - {role: 'wireguard-pi-client', tags: 'wireguard'}
   vars:
     dist_upgrade: yes
     update_apt_cache: yes
