@@ -7,8 +7,10 @@
   copy:
     src: files/journalsize.conf
     dest: /etc/systemd/journald.conf.d/journalsize.conf
+  register: result
 
 - name: reload configuration of journald to reload journalsize configuration
   service:
     name: systemd-journald.service
     state: restarted
+  when: result is changed
