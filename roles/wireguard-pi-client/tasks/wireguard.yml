@@ -30,7 +30,7 @@
 
     - name: Configuring wireguard
       template:
-        src: files/wg.conf.j2
+        src: templates/wg.conf.j2
         dest: "{{ wireguard_conf_path }}{{ wireguard_conf_file }}"
         owner: root
         group: root
@@ -38,7 +38,7 @@
 
     - name: Placing file with all the credentials on the scimageframe
       template:
-        src: files/wg.credentials.j2
+        src: templates/wg.credentials.j2
         dest: "{{ wireguard_conf_path }}{{ wireguard_credentials_file }}"
         owner: root
         group: root

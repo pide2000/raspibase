@@ -31,8 +31,8 @@ The IP in the wireguard VPN.
 `server_ip:`    
 The public IP of your wireguard server.
 
-`port:`    
-The wireguard port.
+`wg_port:`    
+The wireguard wg_port.
 
 `server_public_key:`    
 The public key of the wireguard server.

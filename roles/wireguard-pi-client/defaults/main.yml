@@ -5,7 +5,7 @@ wireguard_conf_file: "wg.conf"
 server_public_key:
 private_ip:
 server_ip:
-port:
+wg_port:
 allowed_ips:
 mtu: 1285
 persistent_keepalive: 21
