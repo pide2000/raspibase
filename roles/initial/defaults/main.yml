@@ -1,5 +1,7 @@
 upgrade: yes
+update_apt_cache: yes
 
+#ssh user
 ansible_user_name: ansible_ssh
 ansible_user: "{{ ansible_user_name }}"
 ssh_user: my_ssh_user
