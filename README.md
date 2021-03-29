@@ -1,4 +1,5 @@
-# raspiBase
+raspiBase
+====
 
 Base configuration for raspberry pi projects. 
 The idea behind this project is to configure a pi with all the basic stuff needed to kickstart a project. 
@@ -8,6 +9,8 @@ The focus lies on headless raspiOS projects.
 * Configure the values needed
 * Run ansible playbook with 
 ```ansible-playbook -i inventories/hosts site.yml -l pi```
+
+If you want  to exclude optional roles, use 
 
 ## Initial Role 
 Here we sum up every task which is essential in our opinion 
@@ -42,6 +45,9 @@ We add an ansible user because if some
 `upgrade`    
 Upgrade RaspiOS? Yes/No
 
+`update_apt_cache`   
+Update apt cache? Yes/No
+
 #### ssh user settings
 `ansible_user_name`
 The username which is used by ansible to connect to the raspberry
@@ -59,6 +65,9 @@ ssh public key of the ssh user
 ssh public key of the ansible user
 
 #### ssh config settings
+
+For in depth information take a look at: https://www.ssh.com/ssh/config/
+
 `permit_empty_passwords`   
 `max_auth_tries`    
 `login_grace_time`    
@@ -78,7 +87,13 @@ Here one can define ufw rules to allow services
 ## wireguard [optional]
 
 Configure our pi as wireguard client. 
+see README in wireguard role for more information and configuration
 
 ## monitoring [optional]
 
 WIP: Monitoring Software, maybe collectd, maybe telegraf, postgresql or influx connector.
+
+License
+-------
+
+GPL V2
