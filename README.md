@@ -1,6 +1,8 @@
 # raspiBase
 
-Base configuration for raspberry pi projects.
+Base configuration for raspberry pi projects. 
+The idea behind this project is to configure a pi with all the basic stuff needed to kickstart a project. 
+The focus lies on headless raspiOS projects.  
 
 #### Quick Start
 * Configure the values needed
@@ -34,6 +36,44 @@ We add an ansible user because if some
 * git
 * mosh
 * Add software you want to install in vars/main.yml 
+
+### Variables
+
+`upgrade`    
+Upgrade RaspiOS? Yes/No
+
+#### ssh user settings
+`ansible_user_name`
+The username which is used by ansible to connect to the raspberry
+
+`ansible_user`
+The ansible user actually used, this is needed to set the user either to pi or to ansible_user_name on first run.
+
+`ssh_user`
+The name of the ssh user
+
+`user_ssh_public_key`
+ssh public key of the ssh user
+
+`ansible_ssh_public_key`
+ssh public key of the ansible user
+
+#### ssh config settings
+`permit_empty_passwords`   
+`max_auth_tries`    
+`login_grace_time`    
+`password_authentication`    
+`x11_forwarding`    
+`ssh_port`    
+
+#### Software
+`software`
+List of mandatory software which will be installed 
+
+#### ufw
+`allowed_services`    
+Here one can define ufw rules to allow services
+
 
 ## wireguard [optional]
 
