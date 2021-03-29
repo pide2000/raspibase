@@ -6,7 +6,7 @@ A role to install and configure a wireguard client on a raspberry pi.
 Requirements
 ------------
 
-You need an running wireguard server and you have to configure the client as a peer on the wireguard server. 
+You need a running wireguard server and you have to configure the client as a peer on the wireguard server. 
 
 Role Variables
 --------------
@@ -20,7 +20,7 @@ The defaults should be overwritten in vars/main.yml
 The Path where all the wg configuration is stored
 
 `wireguard_credentials_file: "wg.credentials"`    
-The file name where all credentials for the clients are stored. This is NOT necessary for wireguard to run properly. It is just for cenvenience because one can see all the configuration parametes in one place. E.g. the generated public key for the client. 
+The file name where all credentials for the client is stored. This is NOT necessary for wireguard to run properly. It is just for cenvenience because one can see all the configuration parametes in one place. E.g. the generated public key for the client. 
 
 `wireguard_conf_file: "wg.conf"`    
 The name of the wireguard configuration file and therefore the name to start the wireguard client with `wg-quick up wg`.
