@@ -1,5 +1,6 @@
 upgrade: yes
 update_apt_cache: yes
+hostname: "test_pi"
 
 #ssh user
 ansible_user_name: ansible_ssh
@@ -21,6 +22,7 @@ software:
   - ufw
   - git
   - vim
+  - fail2ban
 
 allowed_services:
   - ssh
@@ -32,3 +34,4 @@ static_interface: "wlan0"
 static_ip: "192.168.0.22"
 static_router: "192.168.0.1"
 dns: "8.8.8.8 192.168.0.1"
+

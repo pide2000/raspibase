@@ -36,6 +36,18 @@
   import_tasks: ipconfig.yml
   when: set_static_ip
 
+- name: Set hostname
+  lineinfile:
+    path: /etc/hosts
+    regexp: '^127.0.1.1'
+    line: 127.0.1.1       {{ hostname }}
+
+- name: Set hostname
+  lineinfile:
+    path: /etc/hostname
+    regexp: '^raspberrypi'
+    line: "{{ hostname }}"
+
 - name: Remove pi default user
   user:
     name: pi
