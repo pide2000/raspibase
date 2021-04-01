@@ -1,6 +1,6 @@
 upgrade: yes
 update_apt_cache: yes
-hostname: "test_pi"
+hostname: "testpi"
 
 #ssh user
 ansible_user_name: ansible_ssh
