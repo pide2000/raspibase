@@ -1,0 +1,23 @@
+- name: Configure interface for static ip
+  lineinfile:
+    path: /etc/dhcpcd.conf
+    regexp: '^interface'
+    line: interface {{ static_interface }}
+
+- name: Set static ip address
+  lineinfile:
+    path: /etc/dhcpcd.conf
+    regexp: '^static ip_address'
+    line: static ip_address={{ static_ip }}
+
+- name: Set static router
+  lineinfile:
+    path: /etc/dhcpcd.conf
+    regexp: '^static routers'
+    line: static routers={{ static_router }}
+
+- name: Set dns
+  lineinfile:
+    path: /etc/dhcpcd.conf
+    regexp: '^static domain_name_servers'
+    line: static domain_name_servers={{ dns }}

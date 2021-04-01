@@ -32,6 +32,10 @@
 - name: Import task for ufw configuration
   import_tasks: ufw.yml
 
+- name: Import task for static ip configuration
+  import_tasks: ipconfig.yml
+  when: set_static_ip
+
 - name: Remove pi default user
   user:
     name: pi
