@@ -7,12 +7,13 @@ The focus lies on headless raspiOS projects.
 
 #### Quick Start
 * Configure the values needed
+* Configure IP Address of your pi in inventories/hosts
 * Run ansible playbook with 
 ```ansible-playbook -i inventories/hosts site.yml -l pi```
 
 If you want  to exclude optional roles, use for example    
 `ansible-playbook site.yml -i inventories/hosts -l raspi --tags "initial"`
-to restrict the anbsible run to the role initial
+to restrict the ansible run to the role initial
 
 ## Initial Role 
 Here we sum up every task which is essential in our opinion. 
