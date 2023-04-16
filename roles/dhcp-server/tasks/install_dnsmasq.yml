@@ -1,0 +1,7 @@
+---
+- name: Update repositories cache and install dnsmasq
+  apt:
+    name: dnsmasq
+    state: latest
+    update_cache: "{{ update_apt_cache }}"
+    

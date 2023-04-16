@@ -1,18 +1,23 @@
 ---
+
+- name: Accept releaseinbfo changes
+  command: apt-get update -y --allow-releaseinfo-change
+  when: allow_releaseinfo_changes
+
 - name: Upgrade
   apt:
     upgrade: dist
     update_cache: "{{ update_apt_cache }}"
-  register: task_result
+  async: 3600
+  poll: 30
+  notify: Reboot host and wait for it to restart
   when: upgrade
 
-- name: Reboot immediately if there was a change.
-  reboot:
-  when: task_result is changed
-
+# reboot because ufw error "cannot determine iptables version" -> last answer here recommedns reboot https://raspberrypi.stackexchange.com/questions/100598/ufw-and-iptables-on-buster
 - name: Update repositories cache and install common software
   apt:
     name: "{{ software }}"
-    state: present
+    state: latest
     update_cache: "{{ update_apt_cache }}"
+  notify: Reboot host and wait for it to restart
 

@@ -1,4 +1,7 @@
 ---
+- name: Accept releaseinbfo changes
+  command: apt-get update -y --allow-releaseinfo-change
+  when: allow_releaseinfo_changes
 
 - name: Check if wireguard is installed
   package_facts:
@@ -11,11 +14,16 @@
         name: ["raspberrypi-kernel-headers"]
         state: present
 
-    - name: Add raspbian testing
-      shell: "echo 'deb http://archive.raspbian.org/raspbian testing main' | sudo tee --append /etc/apt/sources.list.d/testing.list"
+    - name: Trust Debian repository
+      apt_key:
+        keyserver: hkp://p80.pool.sks-keyservers.net:80
+        id: 04EE7237B7D453EC
+
+    - name: Add raspbian unstable
+      shell: "echo 'deb http://deb.debian.org/debian/ unstable main' | sudo tee --append /etc/apt/sources.list.d/unstable.list"
 
     - name: Set priority of testing low so not every package will be updated to testing
-      shell: "printf 'Package: *\nPin: release a=testing\nPin-Priority: 50\n' | sudo tee --append /etc/apt/preferences.d/limit-testing"
+      shell: "printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' | sudo tee --append /etc/apt/preferences.d/limit-unstable"
 
     - name: Update repositories cache and install wireguard
       apt:

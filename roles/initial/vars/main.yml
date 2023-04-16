@@ -1,0 +1,3 @@
+ssh_user:
+   - { name: "pebo" , public_key: "{{ lookup('file', '~/.ssh/id_rsa_private.pub') }}" }
+   - { name: "stw" , public_key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILGvw/Wfd8XEg4oJ7DePu/uWHaBoNMDx4B/RMOL+qF9M stw@bit-strickerei.de" }

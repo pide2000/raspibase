@@ -1,7 +1,8 @@
-- hosts: raspi
+- hosts: vpngateway
   become: true
   become_method: sudo
-  gather_facts: no
+  gather_facts: false
   roles:
     - {role: 'initial', tags: 'initial'}
     - {role: 'wireguard-pi-client', tags: 'wireguard'}
+    - {role: 'dhcp-server', tags: 'dhcp-server'}

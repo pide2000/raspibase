@@ -1,13 +1,14 @@
-upgrade: yes
-update_apt_cache: yes
+upgrade: no
+update_apt_cache: no
+allow_releaseinfo_changes: no
 hostname: "testpi"
 
 #ssh user
 ansible_user_name: ansible_ssh
 ansible_user: "{{ ansible_user_name }}"
-ssh_user: my_ssh_user
-user_ssh_public_key: "{{ lookup('file', '~/.ssh/id_rsa_private.pub') }}"
 ansible_ssh_public_key: "{{ lookup('file', '~/.ssh/id_rsa_ansible.pub') }}"
+ssh_user:
+  - { name: "my_ssh_user", public_key: "{{ lookup('file', '~/.ssh/id_rsa_private.pub') }}" }
 
 #sshd_config.j2 Variables
 permit_empty_passwords: "no"
@@ -35,3 +36,8 @@ static_ip: "192.168.0.22"
 static_router: "192.168.0.1"
 dns: "8.8.8.8 192.168.0.1"
 
+#journald config
+SystemMaxUse: "64M"
+SystemMaxFileSize: "8M"
+MaxRetentionSec: "2weeks"
+Storage: "persistent"

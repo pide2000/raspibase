@@ -125,4 +125,4 @@ Subsystem	sftp	/usr/lib/openssh/sftp-server
 #	PermitTTY no
 #	ForceCommand cvs server
 
-AllowUsers {{ ssh_user }} {{ ansible_user_name }}
+AllowUsers {% for value in ssh_user %}{{ value.name }} {% endfor %}{{ ansible_user_name }}

@@ -1,0 +1,10 @@
+wireguard_conf_path: "/etc/wireguard/"
+wireguard_credentials_file: "wg.credentials"
+wireguard_conf_file: "wg.conf"
+server_public_key: E55sfknHPOtq6p3cD9eY+CWU3z56Smxpw6O6ecp/P3o=
+private_ip: 10.200.200.11
+server_ip: 144.76.57.164
+wg_port: 51820
+allowed_ips: 10.200.200.0/24
+mtu: 1285
+persistent_keepalive: 21

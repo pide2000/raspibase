@@ -12,17 +12,19 @@
 
 - name: Add user
   user: 
-    name: "{{ ssh_user }}"
-    comment: "{{ ssh_user }} - Administrator"
+    name: "{{ item.name }}"
+    comment: "{{ item.name }} - Administrator"
     shell: /bin/bash
     group: admin
+  loop: "{{ ssh_user }}"
 
 - name: Add ssh public key for user
   authorized_key: 
-    user: "{{ ssh_user }}"
-    key: "{{ user_ssh_public_key }}"
+    user: "{{ item.name }}"
+    key: "{{ item.public_key }}"
     state: present
     exclusive: False
+  loop: "{{ ssh_user }}"
 
 - name: Add user ansible
   user: 

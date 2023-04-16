@@ -1,0 +1,26 @@
+---
+- name: Place adjusted dnsmasq.conf
+  template:
+    src: files/dnsmasq.conf.j2
+    dest: /etc/dnsmasq.conf
+    backup: yes
+
+
+- name: Configure firewall rules
+  ufw:
+    rule: allow
+    name: bootps
+
+- name: Allow udp on port 53
+  ufw:
+    rule: allow
+    proto: udp
+    port: 53
+    direction: in
+
+- name: Allow tcp on port 53
+  ufw:
+    rule: allow
+    proto: tcp
+    port: 53
+    direction: in

@@ -1,0 +1,6 @@
+---
+- name: Import task to install dnsmasq
+  import_tasks: install_dnsmasq.yml
+
+- name: Import task to configure dnsmasq
+  import_tasks: dnsmasq.yml
